@@ -81,7 +81,7 @@ typedef struct
 
 
 /****************************************************************************************************
- *                                   APIs Supported by this Driver Code
+ *                                   APIs Supported by this GPIO Driver Code
  ****************************************************************************************************/
 void GPIO_PeriClockControl(GPIO_RegDef_t *pGPIOx, uint8_t EnorDi); //Why GPIO_RegDef_t *pGPIOx and not handle? Base address
 

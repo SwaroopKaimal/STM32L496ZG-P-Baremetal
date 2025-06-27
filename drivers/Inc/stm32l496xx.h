@@ -189,6 +189,18 @@ typedef struct
 
 }SYSCFG_RegDef_t;
 
+typedef struct
+{
+	__vo uint32_t CR1;
+	__vo uint32_t CR2;
+	__vo uint32_t SR;
+	__vo uint32_t DR;
+	__vo uint32_t CRCPR;
+	__vo uint32_t RXCRCR;
+	__vo uint32_t TXCRCR;
+
+}SPI_RegDef_t;
+
 
 /*Peripheral definitions (Peripheral base addresses type casted to xxx_RegDef_t */
 #define GPIOA 				((GPIO_RegDef_t*)GPIOA_BASEADDR)
@@ -206,6 +218,10 @@ typedef struct
 #define EXTI				((EXTI_RegDef_t*)EXTI_BASEADDR)
 
 #define SYSCFG				((SYSCFG_RegDef_t*)SYSCFG_BASEADDR)
+
+#define SPI1				((SPI_RegDef_t*) SPI1_BASEADDR)
+#define SPI2				((SPI_RegDef_t*) SPI2_BASEADDR)
+#define SPI3				((SPI_RegDef_t*) SPI3_BASEADDR)
 
 
 /*Clock Enable and Disable Macros for GPIOx*/
@@ -281,6 +297,11 @@ typedef struct
 #define GPIOH_REG_RESET()	do{ (RCC->AHB2RSTR |= (1 << 7))	; (RCC->AHB2RSTR &= ~(1 << 7)) ; }while(0)
 #define GPIOI_REG_RESET()	do{ (RCC->AHB2RSTR |= (1 << 8))	; (RCC->AHB2RSTR &= ~(1 << 8)) ; }while(0)
 
+/*Macros to reset GPIO Peripherals*/
+#define SPI1_REG_RESET()	do{ (RCC->APB2RSTR |= (1 << 12)) ; (RCC->APB2RSTR &= ~(1 << 12)) ;}while(0)
+#define SPI2_REG_RESET()	do{ (RCC->APB1RSTR1 |= (1 << 14)) ; (RCC->APB1RSTR1 &= ~(1 << 14)) ;}while(0)
+#define SPI3_REG_RESET()	do{ (RCC->APB1RSTR1 |= (1 << 15)) ; (RCC->APB1RSTR1 &= ~(1 << 15)) ;}while(0)
+
 
 /*Some extra macros*/
 #define ENABLE 			1
@@ -289,7 +310,8 @@ typedef struct
 #define RESET			0
 #define GPIO_PIN_SET 	1
 #define GPIO_PIN_RESET 	0
-
+#define FLAG_RESET      0
+#define FLAG_SET		1
 
 #define GPIO_BASEADDR_TO_CODE(x)	((x == GPIOA) ? 0 :\
 									(x == GPIOB) ? 1 :\
@@ -310,9 +332,51 @@ typedef struct
 #define IRQ_NO_EXTI9_5		23
 #define IRQ_NO_EXTI15_10	40
 
+/* Bit Position definitions of SPI Peripheral*/
 
+//SPI CR1
+#define SPI_CR1_CPHA			0
+#define SPI_CR1_CPOL			1
+#define SPI_CR1_MSRT			2
+#define SPI_CR1_BR				3
+#define SPI_CR1_SPE				6
+#define SPI_CR1_LSBFIRST		7
+#define SPI_CR1_SSI				8
+#define SPI_CR1_SSM				9
+#define SPI_CR1_RXONLY			10
+#define SPI_CR1_CRCL			11
+#define SPI_CR1_CRCNEXT			12
+#define SPI_CR1_CRCEN			13
+#define SPI_CR1_BIDIOE			14
+#define SPI_CR1_BIDIMODE		15
+
+//SPI CR2
+#define SPI_CR2_RXDMAEN			0
+#define SPI_CR2_TXDMAEN			1
+#define SPI_CR2_SSOE			2
+#define SPI_CR2_NSSP			3
+#define SPI_CR2_FRF				4
+#define SPI_CR2_ERRIE			5
+#define SPI_CR2_RXNEIE			6
+#define SPI_CR2_TXEIE			7
+#define SPI_CR2_DS				8
+#define SPI_CR2_FRXTH			12
+#define SPI_CR2_LDMA_RX			13
+#define SPI_CR2_LDMA_TX			14
+
+//SPI Status Register
+#define SPI_SR_RXNE				0
+#define SPI_SR_TXE				1
+#define SPI_SR_CRCERR			4
+#define SPI_SR_MODF				5
+#define SPI_SR_OVR				6
+#define SPI_SR_BSY				7
+#define SPI_SR_FRE				8
+#define SPI_SR_FRLVL			9
+#define SPI_SR_FTLVL			11
 
 
 #include "stm32l496xx_gpio.h"
+#include "stm32l496xx_spi.h"
 
 #endif /* INC_STM32L496XX_H_ */

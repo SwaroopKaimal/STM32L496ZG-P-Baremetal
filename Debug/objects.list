@@ -1,5 +1,6 @@
-"./Src/003button_interrupt.o"
+"./Src/004spi_tx_testing.o"
 "./Src/syscalls.o"
 "./Src/sysmem.o"
 "./Startup/startup_stm32l496zgtxp.o"
 "./drivers/Src/stm32l496xx_gpio.o"
+"./drivers/Src/stm32l496xx_spi.o"

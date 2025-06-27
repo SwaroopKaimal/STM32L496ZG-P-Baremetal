@@ -84,8 +84,11 @@ void GPIO_PeriClockControl(GPIO_RegDef_t *pGPIOx, uint8_t EnorDi)
 
 	}
 }
-/*Initializing GPIO with user's required configurations*/
+/*Initializing GPIO with user's required configurations from GPIO_PinConfig_t*/
 void GPIO_Init(GPIO_Handle_t *pGPIOHandle){
+
+	/*Enable the peripheral clock so that its easy for the user - added later*/
+	GPIO_PeriClockControl(pGPIOHandle->pGPIOx, ENABLE);
 
 	uint32_t  temp=0; //Temporary register
 
