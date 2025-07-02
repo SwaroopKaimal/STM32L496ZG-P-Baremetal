@@ -1,4 +1,4 @@
-"./Src/004spi_tx_testing.o"
+"./Src/005spi_txonly_arduino.o"
 "./Src/syscalls.o"
 "./Src/sysmem.o"
 "./Startup/startup_stm32l496zgtxp.o"

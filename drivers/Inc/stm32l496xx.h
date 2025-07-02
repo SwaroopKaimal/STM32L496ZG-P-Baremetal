@@ -312,6 +312,8 @@ typedef struct
 #define GPIO_PIN_RESET 	0
 #define FLAG_RESET      0
 #define FLAG_SET		1
+#define HIGH			1
+#define LOW				0
 
 #define GPIO_BASEADDR_TO_CODE(x)	((x == GPIOA) ? 0 :\
 									(x == GPIOB) ? 1 :\

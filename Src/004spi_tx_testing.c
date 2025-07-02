@@ -67,7 +67,8 @@ int main(void){
 
 	SPI1_Init();
 
-	/*See video 150 - This makes NSS signal internally high and avoids MODF error and MTSR register resetting*/
+	/*See video 150 - This makes NSS signal internally high and avoids MODF error and MTSR register resetting,
+	 * in software slave management mode*/
 	SPI_SSIConfig(SPI1, ENABLE);
 
 
@@ -77,6 +78,9 @@ int main(void){
 	SPI_Peripheral_Control(SPI1, ENABLE);
 
 	SPI_SendData(SPI1, (uint8_t*)user_data, strlen(user_data));
+
+	/*Confirm that SPI is not busy before disabling, full data may not be sent if closed abruptly*/
+	while(SPI_GetFlagStatus(SPI1, SPI_BSY_FLAG));
 
 	SPI_Peripheral_Control(SPI1, DISABLE);
 

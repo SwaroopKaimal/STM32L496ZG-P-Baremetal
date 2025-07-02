@@ -125,7 +125,7 @@ void SPI_SendData(SPI_RegDef_t *pSPIx, uint8_t *pTxBuffer, uint32_t len)
 
 		//TODO: Configure other data sizes as well
 
-		//Verify the below logic, CUSTOM CODE FOR 8 AND 16 BITS DS
+		/*CUSTOM CODE LOGIC FOR 8 AND 16 BITS DS*/
 		uint16_t tempvar = pSPIx->CR2;
 		tempvar = (tempvar >> SPI_CR2_DS);
 
@@ -193,5 +193,15 @@ void SPI_SSIConfig(SPI_RegDef_t *pSPIx, uint8_t EnorDi)
 		pSPIx->CR1 |= (1 << SPI_CR1_SSI);
 	}else{
 		pSPIx->CR1 &= ~(1 << SPI_CR1_SSI);
+	}
+}
+
+void SPI_SSOEConfig(SPI_RegDef_t *pSPIx, uint8_t EnorDi)
+{
+	if(EnorDi == ENABLE)
+	{
+		pSPIx->CR2 |= (1 << SPI_CR2_SSOE);
+	}else{
+		pSPIx->CR2 &= ~(1 << SPI_CR2_SSOE);
 	}
 }
