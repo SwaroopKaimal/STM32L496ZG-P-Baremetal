@@ -76,7 +76,7 @@ void SPI1_Init()
 
 void GPIO_Button_Init()
 {
-	GPIO_Handle_t gpio_btn, gpio_nss;
+	GPIO_Handle_t gpio_btn;
 
 
 	gpio_btn.pGPIOx = GPIOC;
@@ -114,12 +114,14 @@ int main(void){
 
 		delay();
 
+		SPI_FRXTHConfig(SPI1, ENABLE); /* Specific to L4 series, check SPI CR2 register*/
+
 		/*It recommended to configure all SPI parameters while its not active, when its active it will
 		 * be performing communications continuously and will not accept any changes. So we have the set
 		 * the SPE bit in CR1 at this stage*/
 		SPI_Peripheral_Control(SPI1, ENABLE);
 
-		GPIO_WriteToOutputPin(GPIOB, GPIO_PIN_NO_7, LOW);
+		//GPIO_WriteToOutputPin(GPIOB, GPIO_PIN_NO_7, LOW);
 
 		/*First send length of the data to be sent*/
 		uint8_t dataLen = strlen(user_data);
@@ -132,7 +134,7 @@ int main(void){
 
 		SPI_Peripheral_Control(SPI1, DISABLE);
 
-		GPIO_WriteToOutputPin(GPIOB, GPIO_PIN_NO_7, HIGH);
+		//GPIO_WriteToOutputPin(GPIOB, GPIO_PIN_NO_7, HIGH);
 
 	}
 

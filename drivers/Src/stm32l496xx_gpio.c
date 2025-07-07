@@ -83,6 +83,7 @@ void GPIO_PeriClockControl(GPIO_RegDef_t *pGPIOx, uint8_t EnorDi)
 		}
 
 	}
+
 }
 /*Initializing GPIO with user's required configurations from GPIO_PinConfig_t*/
 void GPIO_Init(GPIO_Handle_t *pGPIOHandle){

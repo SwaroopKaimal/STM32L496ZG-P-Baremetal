@@ -132,5 +132,7 @@ void SPI_Peripheral_Control(SPI_RegDef_t *pSPIx, uint8_t EnorDi);
 void SPI_SSIConfig(SPI_RegDef_t *pSPIx, uint8_t EnorDi);
 void SPI_SSOEConfig(SPI_RegDef_t *pSPIx, uint8_t EnorDi);
 
+void SPI_FRXTHConfig(SPI_RegDef_t *pSPIx, uint8_t EnorDi); /*Specific to L4 series with FRXTH in CR2*/
+
 
 #endif /* INC_STM32L496XX_SPI_H_ */
