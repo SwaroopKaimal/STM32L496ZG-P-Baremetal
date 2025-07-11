@@ -106,6 +106,12 @@ int main(void){
 	SPI1_Init();
 
 	/*SS output is enabled in master mode and when the SPI interface is enabled in hardware mode.*/
+	/*
+		* making SSOE 1 does NSS output enable.
+		* The NSS pin is automatically managed by the hardware.
+		* i.e when SPE=1 , NSS will be pulled to low
+		* and NSS pin will be high when SPE=0
+		*/
 	SPI_SSOEConfig(SPI1, ENABLE);
 
 	while(1){

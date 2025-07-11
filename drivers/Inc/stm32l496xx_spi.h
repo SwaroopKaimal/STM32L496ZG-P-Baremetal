@@ -27,6 +27,16 @@ typedef struct
 	SPI_RegDef_t *pSPIx;
 	SPI_Config_t SPIConfig;
 
+	/***The below elements are added for interrupt based applications- Buffers, Lengths and States
+	 * Global Variables will be initialized for pTxBuffer and pRxBuffer hence given as pointers ***/
+
+	uint8_t *pTxBuffer; /*To store the applicaation's Tx-buffer address */
+	uint8_t *pRxBuffer; /*To store the applicaation's Rx-buffer address*/
+	uint32_t TxLen;
+	uint32_t RxLen;
+	uint8_t TxState;
+	uint8_t RxState;
+
 }SPI_Handle_t;
 
 
@@ -108,6 +118,20 @@ typedef struct
 
 
 
+/***************** MACROS for interrupt********************/
+
+/*SPI Application States (for interrupt based)*/
+#define SPI_READY			0
+#define SPI_BUSY_IN_RX		1
+#define SPI_BUSY_IN_TX		2
+
+/*SPI Possible Application Events(for interrupt based)*/
+#define SPI_EVENT_TX_CMPLT		1
+#define SPI_EVENT_RX_CMPLT		2
+#define SPI_EVENT_OVR_ERR		3
+
+
+
 /****************************************************************************************************
  *                               APIs Supported by this SPI Driver Code
  ****************************************************************************************************/
@@ -119,6 +143,10 @@ void SPI_DeInit(SPI_RegDef_t *pSPIx);
 /*Polling based Send Receive APIs*/
 void SPI_SendData(SPI_RegDef_t *pSPIx, uint8_t *pTxBuffer, uint32_t Len); //Use length as uint32_t - Standard Practice
 void SPI_ReceiveData(SPI_RegDef_t *pSPIx, uint8_t *pRxBuffer, uint32_t Len);
+
+/*Interrupt based Send Receive APIs*/
+uint8_t SPI_SendDataIT(SPI_Handle_t *pSPIHandle, uint8_t *pTxBuffer, uint32_t Len);
+uint8_t SPI_ReceiveDataIT(SPI_Handle_t *pSPIHandle, uint8_t *pRxBuffer, uint32_t Len);
 
 
 void SPI_IRQInterruptConfig(uint8_t IRQNumber, uint8_t EnorDi);
@@ -133,6 +161,16 @@ void SPI_SSIConfig(SPI_RegDef_t *pSPIx, uint8_t EnorDi);
 void SPI_SSOEConfig(SPI_RegDef_t *pSPIx, uint8_t EnorDi);
 
 void SPI_FRXTHConfig(SPI_RegDef_t *pSPIx, uint8_t EnorDi); /*Specific to L4 series with FRXTH in CR2*/
+
+void SPI_ClearOVRFlag(SPI_RegDef_t *pSPIx);
+void SPI_CloseTransmission(SPI_Handle_t *pSPIHandle);
+void SPI_CloseReception(SPI_Handle_t *pSPIHandle);
+
+/*Application callback*/
+void SPI_ApplicationEventCallback(SPI_Handle_t *pSPIHandle, uint8_t AppEv);
+/*This has to be implemented by the application, but we do not know whether the user needs to implement this in their code.
+ * If this is not implemented the compiler will issue errors. Hence, we have to use 'weak' keyword.*/
+
 
 
 #endif /* INC_STM32L496XX_SPI_H_ */

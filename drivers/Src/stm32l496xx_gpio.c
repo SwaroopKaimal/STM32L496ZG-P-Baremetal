@@ -264,7 +264,7 @@ void GPIO_IRQInterruptConfig(uint8_t IRQNumber, uint8_t EnorDi)
 			*NVIC_ISER1 |= (1 << (IRQNumber%32));
 		}
 		else if(IRQNumber > 64 && IRQNumber <= 96){
-			/*Program ISER2 Register - L496ZG-P has only 90 IRQs implemented*/
+			/*Program ISER2 Register - L496ZG-P has only 90 IRQs implemented so only 3 are well enough*/
 			*NVIC_ISER2 |= (1 << (IRQNumber%64));
 		}
 
