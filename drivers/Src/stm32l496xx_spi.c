@@ -384,8 +384,8 @@ void SPI_IRQHandling(SPI_Handle_t *pSPIHandle)
 	}
 
 	/*2. Check for the RXNE*/
-	temp1 = pSPIHandle->pSPIx->SR & (1 << SPI_SR_RXNE);
-	temp2 = pSPIHandle->pSPIx->CR2 & (1 << SPI_CR2_RXNEIE);
+	temp1 = (pSPIHandle->pSPIx->SR & (1 << SPI_SR_RXNE));
+	temp2 = (pSPIHandle->pSPIx->CR2 & (1 << SPI_CR2_RXNEIE));
 
 	if(temp1 && temp2)
 	{
@@ -394,8 +394,8 @@ void SPI_IRQHandling(SPI_Handle_t *pSPIHandle)
 	}
 
 	/*3. Check for the Overrun error (OVR) flag*/
-	temp1 = pSPIHandle->pSPIx->SR & (1 << SPI_SR_OVR);
-	temp2 = pSPIHandle->pSPIx->CR2 & (1 << SPI_CR2_ERRIE);
+	temp1 = (pSPIHandle->pSPIx->SR & (1 << SPI_SR_OVR));
+	temp2 = (pSPIHandle->pSPIx->CR2 & (1 << SPI_CR2_ERRIE));
 
 	if(temp1 && temp2)
 	{

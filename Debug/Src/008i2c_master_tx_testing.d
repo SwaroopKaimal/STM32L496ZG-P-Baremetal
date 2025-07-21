@@ -1,9 +1,13 @@
-Src/007spi_msg_rcv_it.o: ../Src/007spi_msg_rcv_it.c \
+Src/008i2c_master_tx_testing.o: ../Src/008i2c_master_tx_testing.c \
  D:/EmbeddedSystems/Workspace_DriverDevelopment/stm32l4xx_drivers/drivers/Inc/stm32l496xx.h \
  D:/EmbeddedSystems/Workspace_DriverDevelopment/stm32l4xx_drivers/drivers/Inc/stm32l496xx_gpio.h \
  D:/EmbeddedSystems/Workspace_DriverDevelopment/stm32l4xx_drivers/drivers/Inc/stm32l496xx.h \
- D:/EmbeddedSystems/Workspace_DriverDevelopment/stm32l4xx_drivers/drivers/Inc/stm32l496xx_spi.h
+ D:/EmbeddedSystems/Workspace_DriverDevelopment/stm32l4xx_drivers/drivers/Inc/stm32l496xx_spi.h \
+ D:/EmbeddedSystems/Workspace_DriverDevelopment/stm32l4xx_drivers/drivers/Inc/stm32l496xx_i2c.h \
+ D:/EmbeddedSystems/Workspace_DriverDevelopment/stm32l4xx_drivers/drivers/Inc/stm32l496xx_lpuart.h
 D:/EmbeddedSystems/Workspace_DriverDevelopment/stm32l4xx_drivers/drivers/Inc/stm32l496xx.h:
 D:/EmbeddedSystems/Workspace_DriverDevelopment/stm32l4xx_drivers/drivers/Inc/stm32l496xx_gpio.h:
 D:/EmbeddedSystems/Workspace_DriverDevelopment/stm32l4xx_drivers/drivers/Inc/stm32l496xx.h:
 D:/EmbeddedSystems/Workspace_DriverDevelopment/stm32l4xx_drivers/drivers/Inc/stm32l496xx_spi.h:
+D:/EmbeddedSystems/Workspace_DriverDevelopment/stm32l4xx_drivers/drivers/Inc/stm32l496xx_i2c.h:
+D:/EmbeddedSystems/Workspace_DriverDevelopment/stm32l4xx_drivers/drivers/Inc/stm32l496xx_lpuart.h:
